@@ -5,21 +5,21 @@ Details of the project [here](https://frappe.io/flask-test)
 ## Screenshots of pages
 
 ## Index page with reports
-![index.html](./screenshots/index.png)
+![index.html](screenshots/index.png)
 
 ## Products page
-![products.html](./screenshots/prod.png)
+![products.html](screenshots/prod.png)
 
 ## Locations page
-![locations.html](./screenshots/locations.png)
+![locations.html](screenshots/locations.png)
 
 ## Movements page
-![movements.html](./screenshots/movements.png)
+![movements.html](screenshots/movements.png)
 
 ## Update page
 
 ## For products and locations
-![update.html](./screenshots/updateProdAndLoc.png)
+![update.html](screenshots/updateProdAndLoc.png)
 
 ## For Movements
-![updateMovement.html](./screenshots/updateMovements.png)
+![updateMovement.html](/screenshots/updateMovements.png)
