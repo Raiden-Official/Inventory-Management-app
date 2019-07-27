@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% block title %} Hello world {% endblock %}
+{% block body %}
+    <!-- addMovement -->
+    <div class="container">
+            <h1 class="text-center">Movements page</h1>
+            <h2 class="text-center">Note: Only one location can be None and update won't allow decrease in quantity.</h2>
+            <form method='POST' >
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                        <label for="fromLocation">fromLocation:</label>
+                        <select class="form-control" id="fromLocation" name="fromLocation">
+                            <option value="None">None</option>
+                            {% for loc in locations%}
+                            <option value="{{loc.id}}">{{loc.name}}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                        <div class="col-md-6">                    
+                        <label for="toLocation">toLocation:</label>
+                    
+                        <select class="form-control " name="toLocation" id="toLocation">
+                            <option value="None">None</option>
+                            {% for loc in locations%}
+                            <option value="{{loc.id}}">{{loc.name}}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                    </div>
+                    <label for="productID">productName:</label>
+
+                
+                    <select class="form-control" name="productID" id="productID">
+                
+                        {% for prod in products%}
+                        <option value="{{prod.id}}">{{prod.name}}</option>
+                        {% endfor %}
+                    </select>
+                
+                    <label for="quantity">Quantity:</label>
+                    <input name='quantity' type="number" class="form-control" min="1" value="1" id="quantity">
+                    <br>
+                    <div class="container-fluid text-center">
+                    <input type="submit" class="btn btn-primary col-md-6" value="Add Movement">
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <br>
+        <!-- Throws an error if any after POST method. -->
+        <div class="container text-center">{{errorName}}</div>
+        
+        <br>
+        <h2 class="text-center">Movement List</h2>
+        <!-- List of old movements -->
+        <div class="container text-center">
+            <table class="table">
+                <thead>
+                    <tr class="table-primary">
+                        <td>timeStamp</td>
+                        <td>From</td>
+                        <td>To</td>
+                        <td>Product</td>
+                        <td>Quantity</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movement in prodMovementList %}    
+                    <tr class="active">
+                        <td>{{movement.timeStamp}}</td>
+                        <td>{{movement.fromLocation.name if movement.fromLocation != None else movement.fromLocation}}</td>
+                        <td>{{movement.toLocation.name if movement.toLocation != None else movement.toLocation}}</td>
+                        <td>{{movement.productName.name}}</td>
+                        <td>{{movement.qty}}</td>
+                        <td><a href="updateData/{{2}}/update/{{movement.movementID}}" class="btn btn-primary">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>                
+            </table>           
+        </div>
+{% endblock %}

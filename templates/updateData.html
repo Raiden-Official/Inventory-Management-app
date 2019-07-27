@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% block title %} Hello world {% endblock %}
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Updation page</h1>
+        <form method='POST' class="form-group">
+            <!-- tableFlag index: 
+                0 = 'Products table update'
+                1 = 'Locations table update'
+                2 = 'prodMovement table update'
+                Update the view accordingly.
+            -->
+            {% if tableFlag == '0' or tableFlag == '1'%}
+            <label for="updateName">Name: </label>
+            <input type="text" name='updatedName' class="form-control" value="{{currentEntry.name}}">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Update Data">
+            {% elif tableFlag == '2' %}
+            <label for="fromLocation">fromLocation</label>
+                <select name="fromLocation" class="form-control">
+                    <option value="{{currentEntry.fromLocation.id}}">{{currentEntry.fromLocation if currentEntry.fromLocation == None else currentEntry.fromLocation.name}}</option>
+                    {% for loc in locations if loc.id != currentEntry.fromLocation.id %}
+                    <option value="{{loc.id}}">{{loc.name}}</option>
+                    {% endfor %}
+                    {% if currentEntry.fromLocation != None %}
+                    <option value="None">None</option>
+                    {% endif %}
+                </select>
+                <label for="toLocation">toLocation</label>
+                <select name="toLocation" class="form-control">  
+                        <option value="{{currentEntry.toLocation.id}}">{{currentEntry.toLocation.name if currentEntry.toLocation == None else currentEntry.toLocation.name}}</option>
+                        {% for loc in locations if loc.id != currentEntry.toLocation.id %}
+                        <option value="{{loc.id}}">{{loc.name}}</option>
+                        {% endfor %}
+                        {% if currentEntry.toLocation != None %}
+                        <option value="None">None</option>
+                        {% endif %}
+                    </select>
+                <label for="productID">productName</label>
+
+                <select name="productID" class="form-control">
+                        {% for prod in products%}
+                        <option value="{{prod.id}}">{{prod.name}}</option>
+                        {% endfor %}
+                </select>
+                <label for="quantity">Quantity</label>
+
+                <input name='quantity' type="number" class="form-control" min="{{currentEntry.qty}}" value="{{currentEntry.qty}}">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Update Movement">
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
