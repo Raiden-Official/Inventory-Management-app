@@ -1,5 +1,5 @@
 // Using callback from http request
-url = "http://localhost:5000/reqForProdAtLoc"
+// url = "http://localhost:5000/reqForProdAtLoc"
 function getProdListAtLocation(url, callback){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -23,8 +23,11 @@ function getProdListAtLocation(url, callback){
 }
 
 $("#fromLocation").change(function(){
+    var fromLocation = document.getElementById('fromLocation').value
+    var productID = document.getElementById('productID').value
+    url = "http://localhost:5000/reqForProdAtLoc/"+fromLocation+"/"+productID+""
+    console.log(url)
     getProdListAtLocation(url, function(data){
-        data = data.filter(x => x.locationID == document.getElementById('fromLocation').value && x.productID == document.getElementById('productID').value)
         document.getElementById('errorName').innerHTML = data[0].locationName + " has " + data[0].qty +" "+ data[0].productName + "s."
     })
 })
@@ -35,7 +38,6 @@ $("#fromLocation").change(function(){
 
 // $("#fromLocation").change(function(){
 //     $.getJSON("http://localhost:5000/reqForProdAtLoc", function(data){
-//         data = data.filter(x => x.locationID == document.getElementById('fromLocation').value && x.productID == document.getElementById('productID').value)
 //         document.getElementById('errorName').innerHTML = data[0].locationName + " has " + data[0].qty +" "+ data[0].productName + "s."
 //     })
 // })

@@ -15,13 +15,10 @@ def index():
     return render_template('index.html', quantityAtEveryLocation = quantityAtEveryLocation, inOutReport = inOutReport())
 
 # url to handle ajax request on movements page.
-@app.route('/reqForProdAtLoc')
-def reqForProdAtLoc():
-    quantityAtEveryLocation = []
-    for location in Locations.query.all():
-        for product in Products.query.all():
-            quantityAtEveryLocation.append({"locationID" : location.id, "locationName" : location.name, "productID" : product.id, "productName" : product.name, "qty" : getQuantityAtLocation(location.id, product.id)})
-    return jsonify(quantityAtEveryLocation)
+@app.route('/reqForProdAtLoc/<fromLocationID>/<productID>')
+def reqForProdAtLoc(fromLocationID, productID):
+    quantityAtLocation = [{"locationID":fromLocationID, "locationName": Locations.query.get(fromLocationID).name, "productID": productID, "productName": Products.query.get(productID).name,"qty":getQuantityAtLocation(fromLocationID, productID)}]
+    return jsonify(quantityAtLocation)
 
 # Products page with addProduct option and a list of products.
 @app.route('/products', methods=['GET','POST'])
