@@ -1,5 +1,5 @@
 # imports
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, jsonify
 from dbModel import db, Products, Locations, prodMovements, app
 import datetime 
 
@@ -13,6 +13,15 @@ def index():
         for product in Products.query.all():
             quantityAtEveryLocation.append([location.name, product.name, getQuantityAtLocation(location.id, product.id)])
     return render_template('index.html', quantityAtEveryLocation = quantityAtEveryLocation, inOutReport = inOutReport())
+
+# url to handle ajax request on movements page.
+@app.route('/reqForProdAtLoc')
+def reqForProdAtLoc():
+    quantityAtEveryLocation = []
+    for location in Locations.query.all():
+        for product in Products.query.all():
+            quantityAtEveryLocation.append({"locationID" : location.id, "locationName" : location.name, "productID" : product.id, "productName" : product.name, "qty" : getQuantityAtLocation(location.id, product.id)})
+    return jsonify(quantityAtEveryLocation)
 
 # Products page with addProduct option and a list of products.
 @app.route('/products', methods=['GET','POST'])

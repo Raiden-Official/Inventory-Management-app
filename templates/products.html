@@ -1,17 +1,7 @@
 {% extends 'layout.html' %}
 {% block title %} Hello world {% endblock %}
 {% block body %}
-    <!-- addProducts -->
-    <div class="container">
-        <h1 class="text-center">Products page</h1>
-        <form method='POST' class="text-center">
-            <div class="form-group">
-                <input type="text" name='prodName' class="form-control" placeholder="Add a new product">
-                <br>
-                <input type="submit" class="btn btn-primary" value="Add Product">
-            </div>
-        </form>
-    </div>
+    
 
     <!-- Location list of current products -->
     <br>
@@ -40,5 +30,15 @@
         {% endif %} 
     </div>
 
-    
+    <!-- addProducts -->
+    <div class="container">
+            <form method='POST'>
+                <div class="container-fluid form-group">
+                    <label for="prodName">New Product:</label>
+                    <input type="text" name='prodName' id='prodName' class="form-control col-md-6" placeholder="Add a new product">
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Add Product">
+                </div>
+            </form>
+        </div>
 {% endblock %}

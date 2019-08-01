@@ -27,7 +27,7 @@ class Locations(db.Model):
 
 class prodMovements(db.Model):
     movementID = db.Column(db.Integer, primary_key=True)
-    timeStamp = db.Column(db.DateTime, default = datetime.datetime.utcnow)
+    timeStamp = db.Column(db.Date, default = datetime.datetime.now().date())
     qty = db.Column(db.Integer)
 
     fromLocationID = db.Column(db.Integer, db.ForeignKey('locations.id'))

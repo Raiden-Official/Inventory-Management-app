@@ -2,17 +2,6 @@
 {% block title %} Locations {% endblock %}
 {% block body %}
 
-    <!-- addLocation -->
-    <div class="container">
-        <h1 class="text-center">Locations page</h1>
-        <form method='POST' class="text-center">
-            <div class="form-group">
-                <input type="text" name='locName' class="form-control" placeholder="Add a new location">
-                <br>
-                <input type="submit" class="btn btn-primary" value="Add Location">
-            </div>
-        </form>
-    </div>
 
     <!-- Location list of current locations -->
     <br>
@@ -42,4 +31,16 @@
          
         
     </div>
+
+    <!-- addLocation -->
+    <div class="container">
+            <form method='POST'>
+                <div class="container-fluid form-group">
+                    <label for="locName">New location:</label>
+                    <input type="text" name='locName' id="locName" class="form-control col-md-6" placeholder="Add a new location">
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Add Location">
+                </div>
+            </form>
+        </div>
 {% endblock %}

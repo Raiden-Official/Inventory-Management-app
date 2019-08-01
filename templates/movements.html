@@ -3,8 +3,8 @@
 {% block body %}
     <!-- addMovement -->
     <div class="container">
-            <h1 class="text-center">Movements page</h1>
-            <h2 class="text-center">Note: Only one location can be None and update won't allow decrease in quantity.</h2>
+            <h4 class="text-center">Movements page</h4>
+            <h6 class="text-center">Note: Only one location can be None and update won't allow decrease in quantity.</h6>
             <form method='POST' >
                 <div class="form-group">
                     <div class="row">
@@ -50,7 +50,7 @@
         
         <br>
         <!-- Throws an error if any after POST method. -->
-        <div class="container text-center">{{errorName}}</div>
+        <div class="container text-center" id="errorName">{{errorName}}</div>
         
         <br>
         <h2 class="text-center">Movement List</h2>
@@ -59,7 +59,7 @@
             <table class="table">
                 <thead>
                     <tr class="table-primary">
-                        <td>timeStamp</td>
+                        <td>Date</td>
                         <td>From</td>
                         <td>To</td>
                         <td>Product</td>
@@ -81,4 +81,6 @@
                 </tbody>                
             </table>           
         </div>
+
+        <script src="../static/script.js"></script>
 {% endblock %}
